@@ -12,7 +12,7 @@
   :main-opts ["-m" "aka.main" "-A:aka/tap"]
   :extra-deps
   {aka {:git/url "https://github.com/matthias-margush/aka"
-        :sha "ad975ef40df7948a2ff74880e240391d66c18c2a"}}}
+        :sha "f4b7099b4afe4fdb34e18155a1aa2b9612ebcdee"}}}
 
  :read
  {:description "Read and print the definition of an alias."
@@ -22,7 +22,7 @@
   :main-opts ["-m" "aka.main" "-A:aka/read"]
   :extra-deps
   {aka {:git/url "https://github.com/matthias-margush/aka"
-        :sha "ad975ef40df7948a2ff74880e240391d66c18c2a"}}}
+        :sha "f4b7099b4afe4fdb34e18155a1aa2b9612ebcdee"}}}
 
  :describe
  {:description "Print alias documentation."
@@ -37,4 +37,4 @@
   :main-opts ["-m" "aka.main" "-A:aka/describe"]
   :extra-deps
   {aka {:git/url "https://github.com/matthias-margush/aka"
-        :sha "ad975ef40df7948a2ff74880e240391d66c18c2a"}}}}
+        :sha "f4b7099b4afe4fdb34e18155a1aa2b9612ebcdee"}}}}

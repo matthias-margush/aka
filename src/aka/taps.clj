@@ -36,8 +36,12 @@
 (def ^:private
   tap-file
   ""
-  (str (System/getProperty "user.home")
-       "/.clojure/aka.edn"))
+  (if-let [dir (System/getenv "CLJ_CONFIG")]
+    (str dir "/aka.edn")
+    (if-let [dir (System/getenv "XDG_CACHE_HOME")]
+      (str dir "/clojure/aka.edn")
+      (str (System/getProperty "user.home")
+           "/.clojure/aka.edn"))))
 
 (defn slurp-edn
   ""

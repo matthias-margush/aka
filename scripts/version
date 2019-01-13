@@ -1,0 +1,14 @@
+#!/bin/sh
+
+next_version=$(git rev-parse HEAD)
+sub="s/$(cat scripts/.current_sha)/${next_version}/g"
+for file in aka resources/aka.edn
+do
+  sed -i.bak "${sub}" "${file}"
+  rm -f "${file}.bak"
+  git add "${file}"
+done
+
+echo "${next_version}" >scripts/.current_sha
+git add scripts/.current_sha
+git commit -m "Version bump"

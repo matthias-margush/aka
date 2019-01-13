@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -e
+case "$1" in
+  -A*)
+    aka="${1:2}"
+    shift
+    ;;
+  ""|-h|--help)
+    cat <<-EOF
+Usage: aka [command]
+
+Available commands:
+tap - Obtain alias definitions.
+read - Read and print the definition of an alias.
+describe - Print alias documentation.
+EOF
+    exit
+    ;;
+  *)
+    aka="${1}"
+    shift
+    ;;
+esac
+
+if [[ "${aka}" =~ ^(describe|read|tap)$ ]]
+then
+  aka=":aka/${aka}"
+fi
+
+# deps='{:deps {aka {:local/root "."}}}'
+deps='{:deps {aka {:git/url "https://github.com/matthias-margush/aka" :sha "INITIAL_VERSION"}}}'
+
+function definition {
+  clojure -Sdeps "${deps}" -m aka.main :aka/read "${aka}"
+}
+
+deps="$(definition \"${aka}\")"
+clojure -Sdeps "${deps}" "-A${aka}" $@

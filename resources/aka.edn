@@ -1,0 +1,40 @@
+{:tap
+ {:description "Obtain alias definitions."
+  :usage ["Usage: "
+          "  aka tap prefix [options] tap-file"
+          "  clj -A:aka/tap prefix [options] tap-file"
+          ""
+          "Options:"
+          "  -o <deps.edn> Add the aliases to the deps.edn"
+          ""
+          "Aliases will be namespaced with <prefix>."
+          "The <tap-file> is a URL or file containing alias definitions."]
+  :main-opts ["-m" "aka.main" "-A:aka/tap"]
+  :extra-deps
+  {aka {:git/url "https://github.com/matthias-margush/aka"
+        :sha "INITIAL_VERSION"}}}
+
+ :read
+ {:description "Read and print the definition of an alias."
+  :usage ["Usage: "
+          "  aka read alias-name"
+          "  clj -A:aka/read alias-name"]
+  :main-opts ["-m" "aka.main" "-A:aka/read"]
+  :extra-deps
+  {aka {:git/url "https://github.com/matthias-margush/aka"
+        :sha "INITIAL_VERSION"}}}
+
+ :describe
+ {:description "Print alias documentation."
+  :usage ["Usage: "
+          "  aka describe [alias]"
+          "  clj -A:aka/describe [alias]"
+          ""
+          "Examples:"
+          "  clj -A:aka/describe             # Lists all available aliases"
+          "  clj -A:aka/describe :prefix/    # Lists aliases with the namespace of :prefix"
+          "  clj -A:aka/describe :prefix/foo # Full description of alias :prefix/foo"]
+  :main-opts ["-m" "aka.main" "-A:aka/describe"]
+  :extra-deps
+  {aka {:git/url "https://github.com/matthias-margush/aka"
+        :sha "INITIAL_VERSION"}}}}

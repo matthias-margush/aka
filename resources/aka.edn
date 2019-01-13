@@ -1,7 +1,7 @@
 {:tap
  {:description "Obtain alias definitions."
   :usage ["Usage: "
-          "  aka tap prefix [options] tap-file"
+          "  aka tap [options] prefix tap-file"
           "  clj -A:aka/tap prefix [options] tap-file"
           ""
           "Options:"

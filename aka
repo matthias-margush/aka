@@ -29,7 +29,7 @@ then
 fi
 
 # deps='{:deps {aka {:local/root "."}}}'
-deps='{:deps {aka {:git/url "https://github.com/matthias-margush/aka" :sha "244259f4dd66b7c4e26942adb668e17524564939"}}}'
+deps='{:deps {aka {:git/url "https://github.com/matthias-margush/aka" :sha "ad975ef40df7948a2ff74880e240391d66c18c2a"}}}'
 
 function definition {
   clojure -Sdeps "${deps}" -m aka.main :aka/read "${aka}"

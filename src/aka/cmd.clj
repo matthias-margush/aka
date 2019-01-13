@@ -26,8 +26,20 @@
 (defmethod run :aka/tap
   [_ taps args]
   (let [[tap url deps-edn] (parse-tap-args args)]
-    (let [tap (->aka tap)]
-      (t/tappity! taps tap url deps-edn))))
+    (cond
+      (not tap)
+      (do
+        (log/infof "Error: Missing alias prefix\n")
+        (run :aka/describe taps [":aka/tap"]))
+
+      (not url)
+      (do
+        (log/infof "Error: Missing tap-file\n")
+        (run :aka/describe taps [":aka/tap"]))
+
+      :else
+      (let [tap (->aka tap)]
+        (t/tappity! taps tap url deps-edn)))))
 
 (defmethod run :aka/read
   [_ taps [aka]]

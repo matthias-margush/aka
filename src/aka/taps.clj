@@ -46,16 +46,19 @@
 (defn slurp-edn
   ""
   [f]
-  (when (.exists (io/file f))
+  (try
     (edn/read-string
-      (slurp f))))
+      (slurp f))
+    (catch java.io.FileNotFoundException _)))
 
 (defn tappity!
   ""
-  ([taps tapX aka]
-   (tappity! taps tapX aka nil))
-  ([taps tapX aka deps-edn]
-   (let [aka (edn/read-string (slurp aka))]
+  ([taps tapX aka-url]
+   (tappity! taps tapX aka-url nil))
+  ([taps tapX aka-url deps-edn]
+   (let [aka (slurp-edn aka-url)]
+     (when-not aka
+       (log/infof "Error: No aliases found at '%s'" aka-url))
      (let [taps (tap taps tapX aka)]
        (with-open [w (io/writer tap-file)]
          (pprint taps w))
